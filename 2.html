@@ -130,8 +130,8 @@
       showImage(currentIndex);
     }
 
-    // Mostra a primeira imagem ao carregar a página
     showImage(currentIndex);
+
 
     // Event listeners para navegação com setas esquerda e direita do teclado
     document.addEventListener('keydown', function(event) {
@@ -141,6 +141,7 @@
         nextImage();
       }
     });
+    
 
     // Event listeners para navegação ao clicar na galeria
     const gallery = document.querySelector('.gallery');
