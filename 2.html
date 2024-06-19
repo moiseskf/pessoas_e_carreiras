@@ -13,8 +13,8 @@
     }
     .gallery {
       position: relative; /* Necessário para posicionar os controles */
-      height: 80vh; /* Altura da galeria */
-      overflow: hidden; /* Oculta partes da imagem fora da galeria */
+      height: 100%; /* Altura da galeria */
+      /* overflow: hidden;  Oculta partes da imagem fora da galeria */
     }
     .gallery img {
       max-width: 100%; /* Largura máxima da imagem */
@@ -141,7 +141,7 @@
         nextImage();
       }
     });
-    
+
 
     // Event listeners para navegação ao clicar na galeria
     const gallery = document.querySelector('.gallery');
