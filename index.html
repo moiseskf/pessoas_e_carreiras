@@ -8,27 +8,59 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-
-        .gallery {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-        .gallery img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        .controls {
-            margin-top: 20px;
-        }
-
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    .gallery {
+      position: relative; /* Necessário para posicionar os controles */
+      height: 100%; /* Altura da galeria */
+      /* overflow: hidden;  Oculta partes da imagem fora da galeria */
+    }
+    .gallery img {
+      max-width: 100%; /* Largura máxima da imagem */
+      height: auto; /* Altura automática */
+      border-radius: 8px; /* Borda arredondada */
+      cursor: pointer; /* Mostra que a imagem é clicável */
+      transition: transform 0.3s ease; /* Transição suave */
+    }
+    .controls {
+      position: absolute; /* Posiciona os controles em relação à galeria */
+      top: 0;
+      left: 0;
+      width: 100%; /* Largura total */
+      height: 100%; /* Altura total */
+      display: flex; /* Exibe os controles lado a lado */
+      justify-content: space-between; /* Espaço igual entre os controles */
+      align-items: center; /* Centraliza verticalmente */
+      pointer-events: none; /* Não captura eventos nos controles */
+    }
+    .control-button {
+      background-color: rgba(255, 255, 255, 0.5); /* Fundo semi-transparente */
+      border: none; /* Sem borda */
+      color: black; /* Cor do texto */
+      font-size: 24px; /* Tamanho da fonte */
+      padding: 10px 20px; /* Espaçamento interno */
+      cursor: pointer; /* Mostra que os botões são clicáveis */
+      pointer-events: auto; /* Captura eventos apenas nos botões */
+      transition: background-color 0.3s ease; /* Transição suave */
+    }
+    .control-button:hover {
+      background-color: rgba(255, 255, 255, 0.8); /* Fundo mais claro ao passar o mouse */
+    }
+    .left-button {
+      position: absolute; /* Posição absoluta à esquerda */
+      top: 0;
+      bottom: 0;
+      left: 0;
+    }
+    .right-button {
+      position: absolute; /* Posição absoluta à direita */
+      top: 0;
+      bottom: 0;
+      right: 0;
+    }
 
 
 
@@ -116,68 +148,93 @@
         <button onclick="previousImage()">Anterior</button>
         <button onclick="nextImage()">Próxima</button>
       </div>
-    <script>
-        const images = [
-            'imgs/1.png',
-            'imgs/2.png',
-            'imgs/3.png',
-            'imgs/4.png',
-            'imgs/5.png',
-            'imgs/6.png',
-            'imgs/7.png',
-            'imgs/8.png',
-            'imgs/9.png',
-            'imgs/10.png',
-            'imgs/11.png',
-            'imgs/12.png',
-            'imgs/13.png',
-            'imgs/14.png',
-            'imgs/15.png',
-            'imgs/16.png',
-            'imgs/17.png',
-            'imgs/18.png',
-            'imgs/19.png',
-            'imgs/20.png',
-            'imgs/21.png',
-            'imgs/22.png',
-            'imgs/23.png',
-            'imgs/24.png',
-            'imgs/25.png',
-            'imgs/26.png',
-            'imgs/27.png',
-            'imgs/28.png',
-            'imgs/29.png',
-            'imgs/30.png',
-            'imgs/31.png',
-            'imgs/32.png',
-            'imgs/33.png'
 
-         
+
+      <script>
+        const images = [
+          'imgs/1.png',
+          'imgs/2.png',
+          'imgs/3.png',
+          'imgs/4.png',
+          'imgs/5.png',
+          'imgs/6.png',
+          'imgs/7.png',
+          'imgs/8.png',
+          'imgs/9.png',
+          'imgs/10.png',
+          'imgs/11.png',
+          'imgs/12.png',
+          'imgs/13.png',
+          'imgs/14.png',
+          'imgs/15.png',
+          'imgs/16.png',
+          'imgs/17.png',
+          'imgs/18.png',
+          'imgs/19.png',
+          'imgs/20.png',
+          'imgs/21.png',
+          'imgs/22.png',
+          'imgs/23.png',
+          'imgs/24.png',
+          'imgs/25.png',
+          'imgs/26.png',
+          'imgs/27.png',
+          'imgs/28.png',
+          'imgs/29.png',
+          'imgs/30.png',
+          'imgs/31.png',
+          'imgs/32.png',
+          'imgs/33.png'
         ];
+    
         let currentIndex = 0;
         const imageElement = document.querySelector('.gallery-img');
-
+    
         function showImage(index) {
-            if (index < 0) {
-                index = images.length - 1;
-            } else if (index >= images.length) {
-                index = 0; 
-            }
-            imageElement.src = images[index];
-            currentIndex = index;
+          if (index < 0) {
+            index = images.length - 1; 
+          } else if (index >= images.length) {
+            index = 0; 
+          }
+          imageElement.src = images[index];
+          currentIndex = index;
         }
-
+    
         function nextImage() {
-            currentIndex++;
-            showImage(currentIndex);
+          currentIndex++;
+          showImage(currentIndex);
         }
-
+    
         function previousImage() {
-            currentIndex--;
-            showImage(currentIndex);
+          currentIndex--;
+          showImage(currentIndex);
         }
+    
         showImage(currentIndex);
-    </script>
+    
+    
+        // Event listeners para navegação com setas esquerda e direita do teclado
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'ArrowLeft') {
+            previousImage();
+          } else if (event.key === 'ArrowRight') {
+            nextImage();
+          }
+        });
+    
+    
+        // Event listeners para navegação ao clicar na galeria
+        const gallery = document.querySelector('.gallery');
+        gallery.addEventListener('click', function(event) {
+          const { clientX } = event;
+          const { left, width } = gallery.getBoundingClientRect();
+          if (clientX < left + width / 2) {
+            previousImage(); // Clicou na metade esquerda da galeria
+          } else {
+            nextImage(); // Clicou na metade direita da galeria
+          }
+        });
+      </script>
 
 
 
