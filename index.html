@@ -119,7 +119,7 @@
         }
 
         #snapchat>a:hover {
-            
+
             border-radius: 20px;
             background-color: #141413;
             color: rgb(238, 255, 0);
@@ -130,6 +130,43 @@
             src: url('fonts/BebasNeue-Regular.ttf');
             /* Adicione outros formatos se necessário */
         }
+
+
+
+
+
+
+
+
+
+        .gallery {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-left,
+        .nav-right {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .nav-left {
+            left: 0;
+        }
+
+        .nav-right {
+            right: 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
     </style>
 
 
@@ -137,7 +174,11 @@
 
 <body>
     <div>
-        <div class="gallery" onclick="nextImage()">
+
+        <div class="gallery">
+
+            <div class="nav-left" onclick="previousImage()"></div>
+            <div class="nav-right" onclick="nextImage()"></div>
             <img src="imgs/1.jpg" alt="Imagem 1" class="gallery-img">
         </div>
 
