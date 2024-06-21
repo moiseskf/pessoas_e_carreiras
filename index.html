@@ -132,38 +132,46 @@
         }
 
 
-        *:focus,
-        *:active {
-            outline: none;
-        }
-
 
 
 
 
 
         .gallery {
+            
             position: relative;
             display: inline-block;
         }
 
+
+
+
         .nav-left,
         .nav-right {
-
+            outline: none;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             width: 50%;
             height: 100%;
             cursor: pointer;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Para Android */
+           
         }
 
         .nav-left {
+            outline: none;
             left: 0;
         }
 
         .nav-right {
+            outline: none;
+
             right: 0;
+        }
+
+        .nav-right :focus {
+            outline: none;
         }
 
         img {
